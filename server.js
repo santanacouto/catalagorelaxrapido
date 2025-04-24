@@ -2,18 +2,17 @@ const express = require('express');
 const axios = require('axios');
 const qs = require('qs');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static('public')); // serve arquivos HTML/CSS/JS da pasta public
+app.use(express.static('public'));
 
 let cacheProdutos = null;
 let ultimoCache = 0;
-const CACHE_TEMPO_MS = 5 * 60 * 1000; // 5 minutos
+const CACHE_TEMPO_MS = 5 * 60 * 1000;
 
 app.get('/produtos', async (req, res) => {
   const agora = Date.now();
 
-  // se tiver cache e ainda estiver válido
   if (cacheProdutos && agora - ultimoCache < CACHE_TEMPO_MS) {
     return res.send(cacheProdutos);
   }
@@ -25,7 +24,7 @@ app.get('/produtos', async (req, res) => {
     Password: '@852123Bling',
     method: 'ReportView',
     ObjectID: '425',
-    OutputFormat: '6' // JSON
+    OutputFormat: '6'
   };
 
   try {
@@ -33,7 +32,6 @@ app.get('/produtos', async (req, res) => {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     });
 
-    // salva em cache
     cacheProdutos = resposta.data;
     ultimoCache = agora;
 
@@ -44,7 +42,7 @@ app.get('/produtos', async (req, res) => {
   }
 });
 
-
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
+
