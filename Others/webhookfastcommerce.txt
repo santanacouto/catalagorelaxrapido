@@ -1,0 +1,1280 @@
+Sobre o Webhook
+1) O que são?
+O que são e para que servem os webhooks?
+
+Webhooks: Notificações em tempo real para sua loja virtual
+
+O que é um webhook?
+
+Um webhook é como um sistema de alerta personalizado para a sua loja virtual. É uma forma de comunicação entre diferentes sistemas, onde um sistema (no caso, a sua loja) notifica um outro sistema (por exemplo, seu ERP ou serviço de dropshipping) sempre que um evento específico ocorre.
+
+Como funciona na prática?
+
+Você configura um alerta: escolha os eventos que deseja monitorar, como novos pedidos ou alterações nos produtos ou pedidos.
+O evento acontece: quando o evento ocorre, a sua loja envia uma mensagem automática para um endereço de internet específico (chamado de endpoint) que você cadastrou.
+Você recebe a notificação: o sistema externo recebe a mensagem no seu endpoint e realiza a ação desejada, como enviar um email de confirmação, atualizar um banco de dados ou disparar outra ação automatizada.
+Em resumo:
+
+Webhooks são como avisos instantâneos que mantêm outros sistemas informados sobre tudo o que acontece na sua loja virtual. Eles permitem que você automatize processos, tornando sua loja mais eficiente e ágil.
+
+Para que servem os webhooks?
+
+Automatizar tarefas: Elimine tarefas manuais e economize tempo.
+Integrar diferentes ferramentas: Conecte sua loja a outras plataformas, como sistemas de envio, marketing por e-mail e muito mais.
+Melhorar o atendimento ao cliente: Responda mais rápido aos seus clientes e ofereça um serviço personalizado com CRMs especializados.
+Tomar decisões mais precisas: Tenha acesso a informações em tempo real para tomar decisões estratégicas.
+Com os webhooks, você terá mais controle sobre sua loja e poderá automatizar processos.
+
+2) Por que usar?
+Por que usar webhooks na sua loja virtual?
+
+Webhooks são como pontes que conectam sua loja virtual a outros sistemas, permitindo que eles se comuniquem em tempo real. Essa integração traz diversos benefícios para o seu negócio:
+
+Automatize processos:
+
+ERP: Atualize automaticamente seu sistema de gestão empresarial (ERP) com informações sobre novos pedidos, alterações no estoque e notas fiscais emitidas.
+CRM: Envie automaticamente informações sobre os clientes para seu sistema de gerenciamento de relacionamento com o cliente (CRM), permitindo um acompanhamento mais detalhado da jornada do cliente.
+Marketing: Dispare campanhas de email marketing personalizadas com base em eventos como abandono de carrinho, compras recentes ou aniversários dos clientes.
+Otimize operações:
+
+Bankoffice: Integre sua loja com sistemas de bankoffice para automatizar o processo de conciliação bancária e gestão de pagamentos.
+Dropshipping: Automatize o envio de pedidos para seus fornecedores em um modelo de dropshipping, reduzindo o tempo de processamento e evitando erros manuais.
+Em resumo:
+
+Ao integrar sua loja virtual com outros sistemas através de webhooks, você ganha em:
+
+Eficiência: Automatizando tarefas e reduzindo o trabalho manual.
+Precisão: Minimizando erros causados pela digitação manual de dados.
+Agilidade: Respondendo mais rapidamente às demandas dos clientes e do mercado.
+Personalização: Oferecendo uma experiência de compra mais personalizada aos seus clientes.
+Com webhooks, sua loja virtual se torna mais inteligente e conectada, permitindo que você se concentre em estratégias de crescimento.
+
+3) Como configurar
+Como configurar webhooks no Fastcommerce
+
+Agora que você já conhece os benefícios dos webhooks, precisa saber como configurá-los em nossa plataforma. Ao criar um webhook, você precisará preencher alguns campos importantes:
+
+Nome: Um nome descritivo para identificar facilmente o webhook. Por exemplo, "Webhook para ERP - Atualização de Estoque".
+Método: O método HTTP a ser utilizado para enviar a notificação. O método POST é o mais utilizado.
+HTTP Status de sucesso: O código de status HTTP que indica que a notificação foi enviada com sucesso (por exemplo 200, que significa OK). Pode-se informar vários códigos entre vírgulas (ex: 200,201,204)
+HTTP Status de erro: O código de status HTTP que indica que ocorreu um erro ao enviar a notificação (por exemplo 404, que significa Not Found).
+Content-Type: O tipo de conteúdo da mensagem enviada. JSON é o formato mais utilizado.
+Regras de tentativa: Define quantas vezes a loja tentará enviar a notificação em caso de falha e o intervalo entre as tentativas.
+Usuário API: As credenciais de acesso à API da loja no Fastcommerce, necessárias para autenticar a requisição.
+Eventos de notificações: Os eventos que irão disparar os webhooks. As opções são:
+product-created: Um produto foi cadastrado.
+product-updated: Um produto existente foi atualizado.
+product-deleted: Um produto foi excluído.
+order-created: Um pedido foi feito na loja.
+order-updated: Um pedido foi atualizado.
+Como configurar:
+
+Acesse a área de configuração de webhooks: No site administrativo em Mensagens > Webhooks
+Crie um webhook: Clique no botão Adicionar novo serviço de webhook para criar um webhook.
+Preencha os campos: Insira as informações solicitadas, como nome, método HTTP, endpoint, que é a URL para onde a notificação será enviada, e selecione os eventos que você deseja monitorar.
+Configure as regras de tentativa: Defina quantas vezes a loja tentará enviar a notificação em caso de falha e o intervalo entre as tentativas.
+Salve as configurações: Clique em Gravar para finalizar a configuração do webhook.
+Exemplo prático: Integrando com um ERP
+
+Imagine que você deseja atualizar seu ERP sempre que um pedido for criado na sua loja. Para isto você criará um webhook com os seguintes parâmetros:
+
+Nome: Webhook para ERP - Novos Pedidos
+Método: POST
+Content-Type: application/json
+Regras de tentativa: 0,5,20,60,240
+Usuário API: UserERP (selecione o usuário que o sistema ERP utiliza para interagir com o Fastcommerce)
+Eventos: order-created
+Endpoint: A URL da API do seu ERP para criar um pedido.
+Dicas importantes:
+
+Teste seus webhooks: Após configurar um webhook, é fundamental testá-lo para garantir que ele esteja funcionando corretamente.
+Documente seus webhooks: Mantenha uma documentação clara de todos os seus webhooks, incluindo os eventos monitorados, seus endpoint e as respectivas informações enviadas.
+Gerencie seus webhooks: Revise periodicamente seus webhooks para garantir que eles continuam funcionando corretamente e que as informações enviadas estejam atualizadas.
+Com essa configuração, uma notificação será enviada para o seu ERP sempre que um pedido for criado na sua loja, automatizando o processo de criação de um pedido no sistema externo.
+
+4) Eventos disponíveis
+Eventos disponíveis e formatos JSON dos pacotes de notificações enviadas.
+
+Entendendo os eventos e os dados enviados
+
+Os eventos de notificação são os gatilhos que disparam os webhooks. Cada evento carrega consigo um conjunto de dados específicos sobre o que ocorreu na sua loja virtual. Esses dados são enviados em formato JSON, que é fácil de ler e processar por diferentes sistemas.
+
+Eventos e seus dados
+
+product-created: Dados: ID do produto, nome, descrição, preço, categoria, imagens, etc.
+product-updated: Dados: ID do produto, nome, descrição, preço, categoria, imagens, etc.
+product-deleted: Dados: ID do produto.
+order-created: Dados: ID do pedido, cliente, produtos, valor total, endereço de entrega, método de pagamento, etc.
+order-updated: Dados: ID do pedido, cliente, produtos, valor total, endereço de entrega, método de pagamento, etc.
+Ao compreender os eventos disponíveis e o formato JSON dos pacotes de notificações, você estará apto a criar integrações poderosas e personalizadas para sua loja virtual. Ao aproveitar ao máximo as informações fornecidas pelos webhooks, você poderá automatizar processos, melhorar a experiência do cliente e tomar decisões mais estratégicas para o seu negócio.
+
+JSON Base
+JSON Base Exemplo de código JSON padrão:
+
+Toda notificação terá o objeto event com informações sobre a notificação e o objeto data com os dados do produto ou pedido, conforme exemplo abaixo:
+
+
+              {
+                "event":{
+                  "id":99999999,
+                  "store_id":99999999,
+                  "type":"event-name",
+                  "created_at":"2024-08-09T19:40:00Z",
+                  "send_at":"2024-08-09T19:39:42Z",
+                  "submissions":1
+                },
+                "data":{... dados do produto ou pedido, com id, etc ...}
+              }
+              
+Propriedade	Tipo de Dado	Descrição
+event	Objeto	Objeto com os dados do evento
+event.id	Inteiro (long)	Identificador exclusivo do evento.
+event.store_id	Inteiro (long)	Identificador exclusivo da loja.
+event.type	String	Tipo do evento (neste caso, "product-created").
+event.created_at	String (data)	Data e hora de criação do evento (formato UTC).
+event.send_at	String (data)	Data e hora de envio do evento (formato UTC).
+event.submissions	Inteiro	Número de tentativas de envio do evento.
+data	Objeto	Objeto com os dados do pedido ou produto
+4.1 - product-created
+Exemplo de um pacote JSON para o evento product-created:
+
+
+              {
+                "event":{
+                  "id":126620,
+                  "store_id":184,
+                  "type":"product-created",
+                  "created_at":"2024-08-09T19:35:00Z",
+                  "send_at":"2024-08-09T19:35:06Z",
+                  "submissions":1
+                },
+                "data":{
+                  "id":170015,
+                  "parent_id":null,
+                  "sku_code":"REF00019288",
+                  "bar_code":"0123456789012",
+                  "mpn":"8327897898883",
+                  "available":true,
+                  "name":"Nome do produto",
+                  "description":"Descrição curta do produto",
+                  "long_description":"Descrição longa do produto",
+                  "category_id":2803,
+                  "category_name":"CINE & FOTO",
+                  "category_available":true,
+                  "stock":450,
+                  "minimum_stock":50,
+                  "current_price":97,
+                  "price":100,
+                  "cost":45,
+                  "sale_price":97,
+                  "b2b_price":0,
+                  "sale_b2b_price":0,
+                  "current_b2b_price":0,
+                  "sale_start_date":"2024-08-01T03:00:00Z",
+                  "sale_end_date":"2024-09-01T03:00:00Z",
+                  "weight":500,
+                  "width":200,
+                  "height":100,
+                  "depth":150,
+                  "partner_id":null,
+                  "release":true,
+                  "highlight":false,
+                  "url":"https://www.spdepartamentos.com.br/nome-do-produto",
+                  "main_image":"https://www.spdepartamentos.com.br/lojas/00000184/prod/imagem-principal.png",
+                  "detail_image":"https://www.spdepartamentos.com.br/lojas/00000184/prod/imagem-det-1.png,imagem-det-2.png,imagem-det-3.png,imagem-det-4.png,imagem-det-5.png",
+                  "enlarged_image":"https://www.spdepartamentos.com.br/lojas/00000184/prod/imagem-amp-1.png,imagem-amp-2.png,imagem-amp-3.png,imagem-amp-4.png,imagem-amp-5.png",
+                  "video_code":"x9ijapiua88hj",
+                  "descriptor_1":"Calvin Klein",
+                  "descriptor_2":"8 GB",
+                  "descriptor_3":"",
+                  "simple_descriptor_1":"",
+                  "simple_descriptor_2":"110v",
+                  "simple_descriptor_3":"",
+                  "colors":"VERDE",
+                  "filters":null,
+                  "additional_category_1_id":2872,
+                  "additional_category_1_name":"Câmeras Digitais",
+                  "additional_category_2_id":45853,
+                  "additional_category_2_name":"Acima de 8 Megapixels",
+                  "additional_category_3_id":null,
+                  "additional_category_3_name":null,
+                  "additional_category_4_id":null,
+                  "additional_category_4_name":null,
+                  "additional_category_5_id":null,
+                  "additional_category_5_name":null,
+                  "google_product_category":0,
+                  "creation_date":"2024-08-09T19:35:00Z",
+                  "change_date":"2024-08-09T19:35:00Z",
+                  "variations":[
+                    
+                  ]
+                }
+              }
+              
+4.1.1 - product-created (variações)
+Exemplo de um pacote JSON para o evento product-created (produto com variações):
+
+
+              {
+                "event":{
+                  "id":5926,
+                  "store_id":11945,
+                  "type":"product-updated",
+                  "created_at":"2024-08-09T22:06:00Z",
+                  "send_at":"2024-08-09T22:05:55Z",
+                  "submissions":1
+                },
+                "data":{
+                  "id":560312,
+                  "parent_id":null,
+                  "sku_code":"",
+                  "bar_code":"",
+                  "mpn":"",
+                  "available":true,
+                  "name":"Cropped Feminino (1239)",
+                  "description":"",
+                  "long_description":"",
+                  "category_id":30702,
+                  "category_name":"Sem categoria",
+                  "category_available":true,
+                  "stock":1,
+                  "minimum_stock":0,
+                  "current_price":87.56,
+                  "price":87.56,
+                  "cost":0,
+                  "sale_price":0,
+                  "b2b_price":0,
+                  "sale_b2b_price":0,
+                  "current_b2b_price":0,
+                  "sale_start_date":null,
+                  "sale_end_date":null,
+                  "weight":100,
+                  "width":30,
+                  "height":5,
+                  "depth":20,
+                  "partner_id":null,
+                  "release":false,
+                  "highlight":false,
+                  "url":"https://www.store-domain.com.br/cropped-feminino-com-amarracao-cruzada-pescoco-joegskcy",
+                  "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi1_560312.jpg",
+                  "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                  "enlarged_image":"",
+                  "video_code":"",
+                  "descriptor_1":"",
+                  "descriptor_2":"",
+                  "descriptor_3":"",
+                  "simple_descriptor_1":"",
+                  "simple_descriptor_2":"",
+                  "simple_descriptor_3":"",
+                  "colors":"",
+                  "filters":"Tipo Dropi. ",
+                  "additional_category_1_id":null,
+                  "additional_category_1_name":null,
+                  "additional_category_2_id":null,
+                  "additional_category_2_name":null,
+                  "additional_category_3_id":null,
+                  "additional_category_3_name":null,
+                  "additional_category_4_id":null,
+                  "additional_category_4_name":null,
+                  "additional_category_5_id":null,
+                  "additional_category_5_name":null,
+                  "google_product_category":0,
+                  "creation_date":"2024-07-25T22:58:00Z",
+                  "change_date":"2024-08-09T22:05:00Z",
+                  "variations":[
+                    {
+                      "id":560313,
+                      "parent_id":560312,
+                      "sku_code":"4907013550",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560313",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560313.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Branco",
+                      "simple_descriptor_2":"PP",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560314,
+                      "parent_id":560312,
+                      "sku_code":"2270336451",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560314",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560314.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Branco",
+                      "simple_descriptor_2":"P",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560315,
+                      "parent_id":560312,
+                      "sku_code":"9598688712",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560315",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560315.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Branco",
+                      "simple_descriptor_2":"M",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560316,
+                      "parent_id":560312,
+                      "sku_code":"7459900903",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560316",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560316.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Branco",
+                      "simple_descriptor_2":"G",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560317,
+                      "parent_id":560312,
+                      "sku_code":"653176734",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560317",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560317.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Branco",
+                      "simple_descriptor_2":"GG",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560318,
+                      "parent_id":560312,
+                      "sku_code":"5164914325",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560318",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560318.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Preto",
+                      "simple_descriptor_2":"PP",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560319,
+                      "parent_id":560312,
+                      "sku_code":"8681201096",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560319",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560319.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Preto",
+                      "simple_descriptor_2":"P",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560320,
+                      "parent_id":560312,
+                      "sku_code":"3105212557",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560320",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560320.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Preto",
+                      "simple_descriptor_2":"M",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560321,
+                      "parent_id":560312,
+                      "sku_code":"9205027198",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560321",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560321.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Preto",
+                      "simple_descriptor_2":"G",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    },
+                    {
+                      "id":560322,
+                      "parent_id":560312,
+                      "sku_code":"2810982339",
+                      "bar_code":"",
+                      "mpn":null,
+                      "available":true,
+                      "description":"",
+                      "long_description":"",
+                      "stock":1000,
+                      "minimum_stock":0,
+                      "current_price":87.56,
+                      "price":87.56,
+                      "cost":null,
+                      "sale_price":0,
+                      "b2b_price":0,
+                      "sale_b2b_price":0,
+                      "current_b2b_price":0,
+                      "sale_start_date":null,
+                      "sale_end_date":null,
+                      "weight":250,
+                      "width":10,
+                      "height":6,
+                      "depth":20,
+                      "partner_id":null,
+                      "release":false,
+                      "highlight":false,
+                      "url":"https://www.store-domain.com.br/prod,idproduto,560322",
+                      "main_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/vi1_560322.jpg",
+                      "detail_image":"https://www.store-domain.com.br/lojas/00011945/prod/dropi/pi2_560312.jpg,dropi/pi3_560312.jpg,dropi/pi4_560312.jpg",
+                      "enlarged_image":"",
+                      "video_code":null,
+                      "descriptor_1":"",
+                      "descriptor_2":"",
+                      "descriptor_3":"",
+                      "simple_descriptor_1":"Preto",
+                      "simple_descriptor_2":"GG",
+                      "simple_descriptor_3":"",
+                      "colors":"",
+                      "filters":null,
+                      "additional_category_1_id":null,
+                      "additional_category_1_name":null,
+                      "additional_category_2_id":null,
+                      "additional_category_2_name":null,
+                      "additional_category_3_id":null,
+                      "additional_category_3_name":null,
+                      "additional_category_4_id":null,
+                      "additional_category_4_name":null,
+                      "additional_category_5_id":null,
+                      "additional_category_5_name":null,
+                      "google_product_category":null,
+                      "creation_date":"2024-07-25T22:58:00Z",
+                      "change_date":"2024-08-09T19:23:00Z"
+                    }
+                  ]
+                }
+              }
+              
+4.2 - product-updated
+Exemplo de um pacote JSON para o evento product-updated:
+
+
+              {
+                "event":{
+                  "id":126622,
+                  "store_id":184,
+                  "type":"product-updated",
+                  "created_at":"2024-08-09T19:36:00Z",
+                  "send_at":"2024-08-09T19:36:27Z",
+                  "submissions":1
+                },
+                "data":{
+                  "id":170015,
+                  "parent_id":null,
+                  "sku_code":"REF00019288",
+                  "bar_code":"0123456789012",
+                  "mpn":"8327897898883",
+                  "available":true,
+                  "name":"Nome do produto",
+                  "description":"Descrição curta do produto",
+                  "long_description":"Descrição longa do produto",
+                  "category_id":2803,
+                  "category_name":"CINE & FOTO",
+                  "category_available":true,
+                  "stock":460,
+                  "minimum_stock":50,
+                  "current_price":97,
+                  "price":100,
+                  "cost":45,
+                  "sale_price":97,
+                  "b2b_price":0,
+                  "sale_b2b_price":0,
+                  "current_b2b_price":0,
+                  "sale_start_date":"2024-08-01T03:00:00Z",
+                  "sale_end_date":"2024-09-01T03:00:00Z",
+                  "weight":500,
+                  "width":200,
+                  "height":100,
+                  "depth":150,
+                  "partner_id":null,
+                  "release":true,
+                  "highlight":false,
+                  "url":"https://www.spdepartamentos.com.br/nome-do-produto",
+                  "main_image":"https://www.spdepartamentos.com.br/lojas/00000184/prod/imagem-principal.png",
+                  "detail_image":"https://www.spdepartamentos.com.br/lojas/00000184/prod/imagem-det-1.png,imagem-det-2.png,imagem-det-3.png,imagem-det-4.png,imagem-det-5.png",
+                  "enlarged_image":"https://www.spdepartamentos.com.br/lojas/00000184/prod/imagem-amp-1.png,imagem-amp-2.png,imagem-amp-3.png,imagem-amp-4.png,imagem-amp-5.png",
+                  "video_code":"x9ijapiua88hj",
+                  "descriptor_1":"Calvin Klein",
+                  "descriptor_2":"8 GB",
+                  "descriptor_3":"",
+                  "simple_descriptor_1":"",
+                  "simple_descriptor_2":"110v",
+                  "simple_descriptor_3":"",
+                  "colors":"VERDE",
+                  "filters":null,
+                  "additional_category_1_id":2872,
+                  "additional_category_1_name":"Câmeras Digitais",
+                  "additional_category_2_id":45853,
+                  "additional_category_2_name":"Acima de 8 Megapixels",
+                  "additional_category_3_id":null,
+                  "additional_category_3_name":null,
+                  "additional_category_4_id":null,
+                  "additional_category_4_name":null,
+                  "additional_category_5_id":null,
+                  "additional_category_5_name":null,
+                  "google_product_category":0,
+                  "creation_date":"2024-08-09T19:35:00Z",
+                  "change_date":"2024-08-09T19:36:00Z",
+                  "variations":[
+                    
+                  ]
+                }
+              }
+              
+4.3 - product-deleted
+Exemplo de um pacote JSON para o evento product-deleted:
+
+
+              {
+                "event":{
+                  "id":126630,
+                  "store_id":184,
+                  "type":"product-deleted",
+                  "created_at":"2024-08-09T19:40:00Z",
+                  "send_at":"2024-08-09T19:39:42Z",
+                  "submissions":1
+                },
+                "data":{
+                  "id":170015
+                }
+              }
+              
+4.4 - order-created
+Exemplo de um pacote JSON para o evento order-created:
+
+
+              {
+                "event":{
+                  "id":126624,
+                  "store_id":184,
+                  "type":"order-created",
+                  "created_at":"2024-08-09T19:38:00Z",
+                  "send_at":"2024-08-09T19:38:19Z",
+                  "submissions":1
+                },
+                "data":{
+                  "order":{
+                    "id":5748,
+                    "number":"165240243",
+                    "invoice":null,
+                    "total_amount":97,
+                    "amount_without_shipping":97,
+                    "coupon_discount":0,
+                    "discount_without_shipping":0,
+                    "status":"New",
+                    "date":"2024-08-09T19:38:00Z",
+                    "customer_ip":"192.168.0.52",
+                    "landing_page":"https://www.dominiodaloja.com.br/?origem=parceiro&utm_source=xxxx&utm_campaign=yyyyy",
+                    "partner":null
+                  },
+                  "customer":{
+                    "id":1981,
+                    "type":"natural person",
+                    "name":"Nome da Pessoa",
+                    "gender":"male",
+                    "birth_date":"1978-01-01T03:00:00Z",
+                    "email":"teste@fastcommerce.com.br",
+                    "phone":"(21) 2222-2222",
+                    "cellphone":"1199999999",
+                    "document":{
+                      "type":"CPF",
+                      "number":"13324022754"
+                    },
+                    "additional_document":{
+                      "type":"RG",
+                      "number":"1111111111"
+                    },
+                    "address":{
+                      "country":"Brasil",
+                      "street":"Rua Sete de Setembro",
+                      "street_number":"123",
+                      "complement":"",
+                      "neighborhood":"Centro Casa",
+                      "city":"Rio de Janeiro",
+                      "state":"RJ",
+                      "zipcode":"20050-001"
+                    }
+                  },
+                  "payment":{
+                    "method":"Pix",
+                    "processed_by":"Yapay",
+                    "installments":1,
+                    "interest":0
+                  },
+                  "shipping":{
+                    "name":"Nome da Pessoa",
+                    "email":"teste@fastcommerce.com.br",
+                    "amount":0,
+                    "amount_packaging":0,
+                    "discount":0,
+                    "message":null,
+                    "gift":false,
+                    "phone":"(21) 2222-2222",
+                    "info":null,
+                    "obs":null,
+                    "tracking_code":null,
+                    "delivery_date":null,
+                    "address":{
+                      "country":"Brasil",
+                      "street":"Rua Sete de Setembro",
+                      "street_number":"123",
+                      "complement":null,
+                      "neighborhood":"Centro Casa",
+                      "city":"Rio de Janeiro",
+                      "state":"RJ",
+                      "zipcode":"20050-001"
+                    }
+                  },
+                  "items":[
+                    {
+                      "id":170015,
+                      "sku_code":"REF00019288",
+                      "name":"Nome do produto",
+                      "category_name":"CINE & FOTO",
+                      "bar_code":"0123456789012",
+                      "descriptor_1":"Calvin Klein",
+                      "descriptor_2":"8 GB",
+                      "descriptor_3":null,
+                      "simple_descriptor_1":null,
+                      "simple_descriptor_2":"110v",
+                      "simple_descriptor_3":null,
+                      "color":"VERDE",
+                      "filters":"Tipo compra: Avulso",
+                      "unit_price":97,
+                      "quantity":1,
+                      "weight":500
+                    }
+                  ]
+                }
+              }
+              
+4.5 - order-updated
+Exemplo de um pacote JSON para o evento order-updated:
+
+
+              {
+                "event":{
+                  "id":126628,
+                  "store_id":184,
+                  "type":"order-updated",
+                  "created_at":"2024-08-09T19:39:00Z",
+                  "send_at":"2024-08-09T19:38:59Z",
+                  "submissions":1
+                },
+                "data":{
+                  "order":{
+                    "id":5748,
+                    "number":"165240243",
+                    "invoice":null,
+                    "total_amount":97,
+                    "amount_without_shipping":97,
+                    "coupon_discount":0,
+                    "discount_without_shipping":0,
+                    "status":"On approval",
+                    "date":"2024-08-09T19:38:00Z",
+                    "customer_ip":"192.168.0.52",
+                    "landing_page":"https://www.dominiodaloja.com.br/?origem=parceiro&utm_source=xxxx&utm_campaign=yyyyy",
+                    "partner":null
+                  },
+                  "customer":{
+                    "id":1981,
+                    "type":"natural person",
+                    "name":"Nome da Pessoa",
+                    "gender":"male",
+                    "birth_date":"1978-01-01T03:00:00Z",
+                    "email":"teste@fastcommerce.com.br",
+                    "phone":"(21) 2222-2222",
+                    "cellphone":"1199999999",
+                    "document":{
+                      "type":"CPF",
+                      "number":"13324022754"
+                    },
+                    "additional_document":{
+                      "type":"RG",
+                      "number":"1111111111"
+                    },
+                    "address":{
+                      "country":"Brasil",
+                      "street":"Rua Sete de Setembro",
+                      "street_number":"123",
+                      "complement":"",
+                      "neighborhood":"Centro Casa",
+                      "city":"Rio de Janeiro",
+                      "state":"RJ",
+                      "zipcode":"20050-001"
+                    }
+                  },
+                  "payment":{
+                    "method":"Pix",
+                    "processed_by":"Yapay",
+                    "installments":1,
+                    "interest":0
+                  },
+                  "shipping":{
+                    "name":"Nome da Pessoa",
+                    "email":"teste@fastcommerce.com.br",
+                    "amount":0,
+                    "amount_packaging":0,
+                    "discount":0,
+                    "message":null,
+                    "gift":false,
+                    "phone":"(21) 2222-2222",
+                    "info":null,
+                    "obs":null,
+                    "tracking_code":null,
+                    "delivery_date":null,
+                    "address":{
+                      "country":"Brasil",
+                      "street":"Rua Sete de Setembro",
+                      "street_number":"123",
+                      "complement":null,
+                      "neighborhood":"Centro Casa",
+                      "city":"Rio de Janeiro",
+                      "state":"RJ",
+                      "zipcode":"20050-001"
+                    }
+                  },
+                  "items":[
+                    {
+                      "id":170015,
+                      "sku_code":"REF00019288",
+                      "name":"Nome do produto",
+                      "category_name":"CINE & FOTO",
+                      "bar_code":"0123456789012",
+                      "descriptor_1":"Calvin Klein",
+                      "descriptor_2":"8 GB",
+                      "descriptor_3":null,
+                      "simple_descriptor_1":null,
+                      "simple_descriptor_2":"110v",
+                      "simple_descriptor_3":null,
+                      "color":"VERDE",
+                      "filters":"Tipo compra: Avulso",
+                      "unit_price":97,
+                      "quantity":1,
+                      "weight":500
+                    }
+                  ]
+                }
+              }
+              
+5) Dicionário de dados
+5.1 - [Produtos]
+Dicionário de dados [Produtos]
+
+Propriedade	Tipo de Dado	Descrição
+data.id	Inteiro (long)	Identificador exclusivo do produto.
+data.parent_id	Inteiro (long)	Identificador do produto pai (nulo se não houver).
+data.sku_code	String	Código SKU do produto.
+data.bar_code	String	Código de barras do produto.
+data.mpn	String	MPN (Manufacturer Part Number) do produto.
+data.available	Boolean	Indica se o produto está disponível para venda (true) ou não (false).
+data.name	String	Nome do produto.
+data.description	String	Descrição curta do produto.
+data.long_description	String	Descrição longa do produto.
+data.category_id	Inteiro (long)	Identificador da categoria principal do produto.
+data.category_name	String	Nome da categoria principal do produto.
+data.category_available	Boolean	Indica se a categoria está disponível (true) ou não (false).
+data.stock	Inteiro	Quantidade em estoque do produto.
+data.minimum_stock	Inteiro	Nível mínimo de estoque do produto.
+data.current_price	Decimal (float)	Preço atual do produto.
+data.price	Decimal (float)	Preço original do produto (pode ser diferente do current_price).
+data.cost	Decimal (float)	Custo do produto.
+data.sale_price	Decimal (float)	Preço de promoção do produto (pode ser igual ao current_price).
+data.b2b_price	Decimal (float)	Preço para vendas B2B (business-to-business).
+data.sale_b2b_price	Decimal (float)	Preço promocional para vendas B2B.
+data.current_b2b_price	Decimal (float)	Preço B2B atual do produto (pode ser diferente do b2b_price).
+data.sale_start_date	String (data)	Data de início da promoção do produto (formato UTC).
+data.sale_end_date	String (data)	Data de término da promoção do produto (formato UTC).
+data.weight	Inteiro	Peso do produto em gramas
+data.width	Inteiro	Largura do produto em milímetros
+data.height	Inteiro	Altura do produto em milímetros
+data.depth	Inteiro	Profundidade do produto em milímetros
+data.partner_id	Inteiro	Identificador do parceiro
+data.release	Booleano	Indica se o produto foi lançado
+data.highlight	Booleano	Indica se o produto está em destaque
+data.url	String	URL da página do produto
+data.main_image	String	URL da imagem principal
+data.detail_image	String	Lista de URLs das imagens detalhadas
+data.enlarged_image	String	Lista de URLs das imagens ampliadas
+data.video_code	String	Código do vídeo
+data.descriptor_1	String	Descrição adicional 1
+data.descriptor_2	String	Descrição adicional 2
+data.descriptor_3	String	Descrição adicional 3
+data.simple_descriptor_1	String	Descrição simplificada 1
+data.simple_descriptor_2	String	Descrição simplificada 2
+data.simple_descriptor_3	String	Descrição simplificada 3
+data.colors	String	Cores disponíveis
+data.filters	JSON	Filtros associados ao produto
+data.additional_category_1_id	Inteiro	ID da categoria adicional 1
+data.additional_category_1_name	String	Nome da categoria adicional 1
+data.additional_category_2_id	Inteiro	ID da categoria adicional 2
+data.additional_category_2_name	String	Nome da categoria adicional 2
+data.additional_category_3_id	Inteiro	ID da categoria adicional 3
+data.additional_category_3_name	String	Nome da categoria adicional 3
+data.additional_category_4_id	Inteiro	ID da categoria adicional 4
+data.additional_category_4_name	String	Nome da categoria adicional 4
+data.additional_category_5_id	Inteiro	ID da categoria adicional 5
+data.additional_category_5_name	String	Nome da categoria adicional 5
+data.google_product_category	Inteiro	Categoria do Google Shopping
+data.creation_date	Data/Hora	Data de criação
+data.change_date	Data/Hora	Data da última modificação
+data.variations	Array	Array de variações do produto
+5.2 - [Pedidos]
+Dicionário de dados [Pedidos]
+
+Propriedade	Tipo de Dado	Descrição
+data.order.id	Inteiro	Identificador exclusivo do pedido
+data.order.number	String	Número do pedido
+data.order.invoice	String	Número da fatura (pode ser nulo)
+data.order.total_amount	Decimal	Valor total do pedido
+data.order.amount_without_shipping	Decimal	Valor do pedido sem frete
+data.order.coupon_discount	Decimal	Valor de desconto aplicado por cupom
+data.order.discount_without_shipping	Decimal	Desconto aplicado sem considerar o frete
+data.order.status	String	Status do pedido
+data.order.date	Data/Hora (UTC)	Data e hora da criação do pedido
+data.order.customer_ip	String	IP do cliente que realizou o pedido
+data.order.landing_page	String	URL da página de entrada na sessão do cliente que realizou o pedido
+data.order.partner	String	Nome do parceiro (se houver)
+data.customer.id	Inteiro	Identificador exclusivo do cliente
+data.customer.type	String	Tipo de cliente (natural person ou legal person)
+data.customer.name	String	Nome do cliente
+data.customer.gender	String	Sexo do cliente (se informado)
+data.customer.birth_date	Data/Hora (UTC)	Data de nascimento do cliente (se informado)
+data.customer.email	String	Endereço de e-mail do cliente
+data.customer.phone	String	Telefone fixo do cliente
+data.customer.cellphone	String	Telefone celular do cliente
+data.customer.document.type	String	Tipo de documento (CPF ou CNPJ)
+data.customer.document.number	String	Número do documento
+data.customer.additional_document.type	String	Tipo de documento adicional (se houver)
+data.customer.additional_document.number	String	Número do documento adicional (se houver)
+data.customer.address.country	String	País
+data.customer.address.street	String	Logradouro
+data.customer.address.street_number	String	Número do endereço
+data.customer.address.complement	String	Complemento do endereço
+data.customer.address.neighborhood	String	Bairro
+data.customer.address.city	String	Cidade
+data.customer.address.state	String	Estado
+data.customer.address.zipcode	String	CEP
+data.payment.method	String	Método de pagamento utilizado
+data.payment.processed_by	String	Processador de pagamento
+data.payment.installments	Inteiro	Número de parcelas
+data.payment.interest	Decimal	Valor dos juros
+data.shipping.name	String	Nome do destinatário
+data.shipping.email	String	E-mail do destinatário
+data.shipping.amount	Decimal	Valor do frete
+data.shipping.amount_packaging	Decimal	Valor da embalagem
+data.shipping.discount	Decimal	Desconto no frete
+data.shipping.message	String	Mensagem para o destinatário
+data.shipping.gift	Boolean	Indica se é um pedido de presente
+data.shipping.phone	String	Telefone do destinatário
+data.shipping.info	String	Informações adicionais de envio
+data.shipping.obs	String	Observações sobre o envio
+data.shipping.tracking_code	String	Código de rastreio
+data.shipping.delivery_date	Data/Hora (UTC)	Data prevista de entrega
+data.shipping.address.country	String	País do endereço de entrega
+data.shipping.address.street	String	Logradouro do endereço de entrega
+data.shipping.address.street_number	String	Número do endereço de entrega
+data.shipping.address.complement	String	Complemento do endereço de entrega
+data.shipping.address.neighborhood	String	Bairro do endereço de entrega
+data.shipping.address.city	String	Cidade do endereço de entrega
+data.shipping.address.state	String	Estado do endereço de entrega
+data.shipping.address.zipcode	String	CEP do endereço de entrega
+data.items[index].id	Inteiro	Identificador do item
+data.items[index].sku_code	String	Código SKU do produto
+data.items[index].name	String	Nome do produto
+data.items[index].category_name	String	Categoria do produto
+data.items[index].bar_code	String	Código de barras do produto
+data.items[index].descriptor_1	String	Descrição adicional 1
+data.items[index].descriptor_2	String	Descrição adicional 2
+data.items[index].descriptor_3	String	Descrição adicional 3
+data.items[index].simple_descriptor_1	String	Descrição simplificada 1
+data.items[index].simple_descriptor_2	String	Descrição simplificada 2
+data.items[index].simple_descriptor_3	String	Descrição simplificada 3
+data.items[index].color	String	Cor do produto
+data.items[index].filters	String	Filtros do produto
+data.items[index].unit_price	Decimal	Preço unitário do produto
+data.items[index].quantity	Inteiro	Quantidade do produto
+data.items[index].weight	Inteiro	Peso do produto
+Observação: O índice [index] representa a posição do item no array items.
+
